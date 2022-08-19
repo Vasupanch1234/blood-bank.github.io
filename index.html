@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/af604c0b21.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/White Health Medical Center Logo.png" class="logo"">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#getblood">Get Blood</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                
+                <h1>Donate <span>Blood</span> and<br> gift someone a precious life.</h1>
+            </div>
+        </div>
+    </div>
+<!---------------------------------about------------------ ---- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+               <div class="about-col-1">
+                   <img src="images/akram-huseyn-fKC9eWRnlGY-unsplash.jpg" >
+               </div>
+               <div class="about-col-2">
+                   <h1 class="sub-title">Why should people donate blood?</h1>
+
+                   <br>
+                   <br>
+                   <p>Safe blood saves lives. Blood is needed by women with complications during<br>
+                       pregnancy and childbirth, children with severe anaemia, often resulting from <br>
+                       malaria or malnutrition, accident victims and surgical and cancer patients.
+                        <br>
+                        <br>
+                       There is a constant need for a regular supply of blood because it can be stored<br>
+                       only for a limited period of time before use. Regular blood donation by a sufficient<br>
+                       number of healthy people is needed to ensure that blood will always be available<br>
+                       whenever and wherever it is needed.
+                       <br>
+                       <br>
+                       Blood is the most precious gift that anyone can give to another person the gift of life.<br>
+                       A decision to donate your blood can save a life, or even several if your blood is separated<br>
+                       into its components – red cells, platelets and plasma – which can be used individually for patients<br>
+                       with specific conditions.
+
+
+                    </p>
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------------portfolio------------------ -->
+
+    <div id="getblood">
+          <div class="container">
+            <h1 class="sub-title">Get Blood</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/pexels-karolina-grabowska-5206944.jpg" >
+                    <div class="layer">
+                        <h3>Get Blood.</h3>
+                        <p>Get Blood for the needy in a single click.<br>
+                           The aim is to help everyone as soon as possible.
+                        </p>
+                            <a href="https://docs.google.com/spreadsheets/d/1gJ8uVlUcPedaofwVxFJSpezgX_tkNfDt_NNIRaTYUE4/edit?usp=sharing"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                
+            
+            </div>
+            <a href="https://www.who.int/news-room/questions-and-answers/item/blood-products-why-should-i-donate-blood#:~:text=Why%20should%20people%20donate%20blood,and%20surgical%20and%20cancer%20patients." class="btn">Know more</a>
+          </div>
+
+    </div>
+    <!---------------contact-------------------------- - -------->
+    <div id="contact">
+
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Donate Blood</h1>
+                   
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="text" name="Blood" placeholder="Your Blood group" required>
+                        <input type="number" name="Contact" placeholder="Your contact" required>
+                        <input type="text" name="Branch" placeholder="Your branch" required>
+                        <input type="number" name="Year" placeholder="Your year" >
+                       
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright 2022 Ⓒ Vasudev.</p>
+        </div>
+    </div>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname)
+        {
+            for(tablink of tablinks)
+            {
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents)
+            {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+        function openmenu(){
+            sidemenu.style.right="0";
+        }
+        function closemenu(){
+            sidemenu.style.right="-200px";
+        }
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxU4i3cfrw9XG7jQOHRYH167oqgIm472-sudH4vBzZyROlIkTa_BwVRX_6qynC3cKwG/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML="Message sent successfully!"
+                setTimeout(function(){
+                    msg.innerHTML=""
+                
+            },5000)
+            form.reset()
+        })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
